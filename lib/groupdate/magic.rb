@@ -67,7 +67,7 @@ module Groupdate
         when "PostgreSQL", "PostGIS"
           case field
           when :day_of_week
-            ["EXTRACT(DOW from #{column}::timestamptz AT TIME ZONE ? - INTERVAL '#{day_start} second')::integer", time_zone]
+            ["EXTRACT(DOW from #{column}::timestamptz AT TIME ZONE ? - INTERVAL '#{week_start + 1} day' - INTERVAL '#{day_start} second')::integer", time_zone]
           when :hour_of_day
             ["EXTRACT(HOUR from #{column}::timestamptz AT TIME ZONE ? - INTERVAL '#{day_start} second')::integer", time_zone]
           when :minute_of_hour
